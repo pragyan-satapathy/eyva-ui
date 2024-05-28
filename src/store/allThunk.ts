@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from "../api/api";
 import { Member } from "../utils/memberTypes";
+import { BASE_URL } from "../utils/constant";
 
 export const fetchAllMembers = createAsyncThunk(
   'member/fetchAllMembers',
@@ -23,7 +24,7 @@ export const fetchPaginatedMembers = createAsyncThunk(
 export const searchMembers = createAsyncThunk(
   'member/searchMembers',
   async (query: string) => {
-    const response = await fetch(`http://localhost:5000/members?search=${query}`);
+    const response = await fetch(`${BASE_URL}/members?search=${query}`);
     const data = await response.json();
     return data.members;
   }
